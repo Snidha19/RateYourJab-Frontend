@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-// import store from "@/store";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -42,18 +42,19 @@ const router = new VueRouter({
 });
 
 //
-// router.beforeEach(async(to,from,next) => {
-//   let response = await Vue.axios.get("/api/whoami");
-//   //response.data is payload
-//   store.dispatch("setLoggedInUser", response.data);
-//   console.log(store.state.isLoggedIn);
-//   console.log(store.state.username);
-//   console.log(store.state.name);
-//   if(to.name !== 'Login') {
-//     next({name:'Login'})
-//   } else {
-//     next()
-//   }
-// });
+router.beforeEach(async(to,from,next) => {
+  let response = await Vue.axios.get("/api/whoami");
+  //response.data is payload
+  store.dispatch("setLoggedInUser", response.data);
+  let isLoggedIn = store.state.isLoggedIn;
+  console.log(store.state.isLoggedIn);
+  console.log(store.state.username);
+  console.log(store.state.name);
+  if(to.name !== 'Login' && to.name !== 'Register' && to.name !== 'Home' && !isLoggedIn) {
+    next({name:'Login'})
+  } else {
+    next()
+  }
+});
 
 export default router;
