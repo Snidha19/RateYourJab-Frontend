@@ -26,7 +26,7 @@
 
         <v-btn
           text
-          to="/About"
+          to="/register"
           style="margin-left: 20px; margin-top: 50px; font-size: 20px"
         >
           Sign Up
@@ -34,7 +34,7 @@
 
         <v-btn
           text
-          to="/Login"
+          to="/login"
           style="margin-left: 20px; margin-top: 50px; font-size: 20px"
         >
           Log In
@@ -42,13 +42,16 @@
       </v-app-bar>
       <img
         alt="background"
-        style="width: fit-content"
+        style="width: 100%; height:100%"
         src="../assets/vacc-backdrop.jpeg"
       />
     </div>
     <div class="bg-card">
       <div class="bg-subcard"></div>
-      <h1 class="bg-text">Review, Rate & Recommend Your Vaccine Experience</h1>
+      <h1 class="bg-text">Review, </h1>
+      <h1 class="bg-text">Rate &</h1>
+      <h1 class="bg-text">Recommend</h1>
+      <h1 class="bg-text">Your Vaccine Experience</h1>
     </div>
   </v-app>
 </template>
@@ -65,12 +68,13 @@
   /*z-index: 2;*/
   width: 418px;
   height: 460px;
+  border: 1px #000000;
   /*padding: 20px;*/
 }
 
 .bg-subcard {
   background-color: yellow;
-  border-radius: 8px;
+  border-radius: 7px;
   height: 20px;
   width: 418px;
 }
@@ -79,8 +83,8 @@
   color: white;
   font-weight: bold;
   text-align: left;
-  font-size: 60px;
-  padding-left: 30px;
+  font-size: 50px;
+  padding-left: 60px;
 }
 </style>
 <script>
