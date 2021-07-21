@@ -29,15 +29,17 @@
       <v-text-field
           label="Email or Username"
           solo
-          v-model="email"
-          required
+          v-model="name"
+          :rules="nameRules"
           height="70px"
           class="card-text"
+          required
       ></v-text-field>
       <v-text-field
           label="Password"
           solo
           v-model="password"
+          :rules="passwordRules"
           height="70px"
           class="card-text"
           required
@@ -107,5 +109,16 @@
 export default {
   name: "Login",
   components: {},
+  data : ()=> ({
+    valid:true,
+    name:"",
+    nameRules :[
+      (v) => !!v || "Username is required"
+    ],
+    password:"",
+    passwordRules :[
+      (v) => !!v || "Username is required"
+    ],
+  })
 };
 </script>
