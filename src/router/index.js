@@ -24,7 +24,13 @@ const routes = [
     path: "/register",
     name: "Register",
     component: () =>
-         import(/* webpackChunkName: "about" */ "../views/Register.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Register.vue"),
+  },
+  {
+    path: "/review",
+    name: "Review",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Review.vue"),
   },
   {
     path: "/App",
@@ -32,8 +38,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-        import(/* webpackChunkName: "about" */ "../App.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../App.vue"),
   },
 ];
 
@@ -42,18 +47,28 @@ const router = new VueRouter({
 });
 
 //
-router.beforeEach(async(to,from,next) => {
+router.beforeEach(async (to, from, next) => {
   let response = await Vue.axios.get("/api/whoami");
   //response.data is payload
-  store.dispatch("setLoggedInUser", response.data);
+  await store.dispatch("setLoggedInUser", response.data);
+  // let isLoggedIn = response.data.loggedIn;
   let isLoggedIn = store.state.isLoggedIn;
   console.log(store.state.isLoggedIn);
   console.log(store.state.username);
   console.log(store.state.name);
-  if(to.name !== "Login" && !isLoggedIn) { //&& to.name !== "Register" && to.name !== "Home"
-    next({name:"Login"})
+  if (to.name === "Login" && isLoggedIn) {
+    next({ name: "Review" });
+  }
+  if (
+    to.name !== "Login" &&
+    to.name !== "Register" &&
+    to.name !== "Home" &&
+    !isLoggedIn
+  ) {
+    //&& to.name !== "Register" && to.name !== "Home"
+    next({ name: "Login" });
   } else {
-    next()
+    next();
   }
 });
 

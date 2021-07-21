@@ -29,7 +29,7 @@
       <v-text-field
           label="Email or Username"
           solo
-          v-model="name"
+          v-model="username"
           :rules="nameRules"
           height="70px"
           class="card-text"
@@ -37,6 +37,7 @@
       ></v-text-field>
       <v-text-field
           label="Password"
+          type="password"
           solo
           v-model="password"
           :rules="passwordRules"
@@ -44,7 +45,7 @@
           class="card-text"
           required
       ></v-text-field>
-        <v-btn class="card-btn" color="white" height="50px" rounded>
+        <v-btn class="card-btn" color="white" height="50px" @click="submit" rounded to="/review">
           Submit
         </v-btn>
       </v-form>
@@ -64,7 +65,7 @@
 }
 
 .card {
-  background-color: rgba(		28, 89, 122, 0.4); /* Black w/opacity/see-through */
+  background-color: rgba(		28, 89, 122, 0.5); /* Black w/opacity/see-through */
   color: white;
   border: 1px solid #f1f1f1;
   border-radius: 30px;
@@ -105,20 +106,36 @@
 }
 </style>
 <script>
+import Vue from "vue";
 
 export default {
   name: "Login",
   components: {},
   data : ()=> ({
     valid:true,
-    name:"",
+    username:"",
     nameRules :[
       (v) => !!v || "Username is required"
     ],
     password:"",
     passwordRules :[
-      (v) => !!v || "Username is required"
+      (v) => !!v || "Password is required"
     ],
-  })
+  }),
+  methods: {
+    async submit(){
+      if (this.$refs.form.validate){
+        let formData = new FormData;
+        formData.append("username", this.username);
+        formData.append("password", this.password);
+
+        let response = await Vue.axios.post("/api/login", formData);
+        if(response.data.success) {
+          this.$router.push({path:"/review"});
+      }
+      }
+      console.log(this.username, this.password);
+    }
+  }
 };
 </script>

@@ -28,7 +28,7 @@
         <v-text-field
           label="Fullname"
           solo
-          v-model="email"
+          v-model="fullname"
           height="70px"
           class="center-card-text"
           required
@@ -36,7 +36,7 @@
         <v-text-field
             label="Age"
             solo
-            v-model="password"
+            v-model="age"
             height="70px"
             class="center-card-text"
             required
@@ -44,15 +44,15 @@
         <v-text-field
             label="Gender"
             solo
-            v-model="password"
+            v-model="gender"
             height="70px"
             class="center-card-text"
             required
         ></v-text-field>
         <v-text-field
-            label="Email or Username"
+            label="Username"
             solo
-            v-model="email"
+            v-model="username"
             required
             height="70px"
             class="center-card-text"
@@ -122,7 +122,14 @@
 
 <script>
 export default {
-  name: "Register"
-}
+  name: "Register",
+  data : () => ({
+    fullname:"",
+    age:"",
+    gender:"",
+    username:"",
+    password:"",
+})
+};
 </script>
 
