@@ -25,7 +25,7 @@
     </div>
     <div class="card">
 <!--     <h1 class="card-title"> Login </h1>-->
-      <v-form class="card-actions">
+      <v-form class="card-actions" ref="form" v-model="valid">
       <v-text-field
           label="Email or Username"
           solo
