@@ -20,9 +20,8 @@
 
         <v-btn
             text
-            to="/"
             style="margin-left: 20px; margin-top: 50px; font-size: 20px"
-            @click="submit"
+            @click="logout"
         >
          LogOut
         </v-btn>
@@ -30,36 +29,49 @@
       </v-app-bar>
       <img
           alt="background"
-          class="bg-image"
-          src="../assets/vacc-backdrop.jpeg"
+          class="image"
+          style="opacity: 0.5"
+          src="../assets/vac 2.jpeg"
       />
     </div>
+    <v-btn
+        color="blue"
+        dark
+        absolute
+        top
+        right
+        fab
+        style="position: absolute; right: 50px; top: 120px"
+        to="/addreview"
+    >
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
   </v-app>
 </template>
 
 <script>
 import Vue from "vue";
+import store from "@/store";
 
 export default {
   name: "Review",
   methods: {
-    async submit(){
-      if (this.$refs.form.validate){
-        let formData = new FormData;
-      //   formData.append("username", this.username);
-      //   formData.append("password", this.password);
-
-        await Vue.axios.post("/api/logout", formData);
-        // if(response.data.success) {
-        //   this.$router.push({path:"/review"});
-        // }
+    async logout(){
+        let response = await Vue.axios.post("/api/logout");
+        await store.dispatch("clearUser");
+      if(response.data.success) {
+        this.$router.push({path:"/"});
       }
-      console.log(this.username, this.password);
-    }
+      }
   }
 }
 </script>
 
-<style scoped>
+<style>
+.image {
+  width: 100%;
+  height: 100%;
+}
+
 
 </style>

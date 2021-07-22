@@ -45,15 +45,16 @@
           class="center-card-text"
           required
         ></v-text-field>
-        <v-text-field
+        <v-select
           label="Gender"
           solo
           v-model="gender"
+          :items="genders"
           :rules="rules"
           height="70px"
           class="center-card-text"
           required
-        ></v-text-field>
+        ></v-select>
         <v-text-field
           label="Username"
           solo
@@ -144,6 +145,7 @@ export default {
     fullName: "",
     age: "",
     gender: "",
+    genders:[ "Male", "Female"],
     username: "",
     password: "",
     rules: [(v) => !!v || "This field is required"],

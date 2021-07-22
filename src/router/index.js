@@ -33,6 +33,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Review.vue"),
   },
   {
+    path: "/addreview",
+    name: "AddReview",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/AddReview.vue"),
+  },
+  {
     path: "/App",
     name: "App",
     // route level code-splitting
@@ -56,13 +62,14 @@ router.beforeEach(async (to, from, next) => {
   console.log(store.state.isLoggedIn);
   console.log(store.state.username);
   console.log(store.state.name);
-  if (to.name === "Login" && isLoggedIn) {
+  if ((to.name === "Login" || to.name === "Register" || to.name === "Home") && isLoggedIn) {
     next({ name: "Review" });
   }
   if (
     to.name !== "Login" &&
     to.name !== "Register" &&
     to.name !== "Home" &&
+      to.name !== "AddReview" &&
     !isLoggedIn
   ) {
     //&& to.name !== "Register" && to.name !== "Home"
