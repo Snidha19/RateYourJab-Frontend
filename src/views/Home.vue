@@ -1,8 +1,4 @@
 <template>
-  <!--  <div class="home">-->
-  <!--    <img alt="Vue logo" src="../assets/logo.png" />-->
-  <!--    <router-link to ="/App"> go to App </router-link>-->
-  <!--  </div>-->
   <v-app>
     <div>
       <v-app-bar color="#80BFE2" dense dark style="height: 100px">
@@ -42,19 +38,26 @@
       </v-app-bar>
       <img
         alt="background"
-        style="width: 100%; height:100%"
+        style="width: 100%; height: 100%"
         src="../assets/vacc-backdrop.jpeg"
       />
     </div>
     <div class="bg-card">
       <div class="bg-subcard"></div>
-      <h1 class="bg-text">Review, </h1>
+      <h1 class="bg-text">Review,</h1>
       <h1 class="bg-text">Rate &</h1>
       <h1 class="bg-text">Recommend</h1>
       <h1 class="bg-text">Your Vaccine Experience</h1>
     </div>
   </v-app>
 </template>
+
+<script>
+export default {
+  name: "Home",
+  components: {},
+};
+</script>
 
 <style>
 .bg-card {
@@ -64,12 +67,9 @@
   position: absolute;
   top: 30%;
   left: 7%;
-  /*transform: translate(-50%, -50%);*/
-  /*z-index: 2;*/
   width: 418px;
   height: 460px;
   border: 1px #000000;
-  /*padding: 20px;*/
 }
 
 .bg-subcard {
@@ -87,11 +87,3 @@
   padding-left: 60px;
 }
 </style>
-<script>
-// @ is an alias to /src
-
-export default {
-  name: "Home",
-  components: {},
-};
-</script>

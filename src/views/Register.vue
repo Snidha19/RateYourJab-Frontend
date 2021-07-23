@@ -100,42 +100,6 @@
   </v-app>
 </template>
 
-<style>
-.bg-image {
-  width: 100%;
-  height: 100%;
-}
-.center-card {
-  background-color: rgba(28, 89, 122, 0.4); /* Black w/opacity/see-through */
-  color: white;
-  border: 1px solid #f1f1f1;
-  border-radius: 30px;
-  position: absolute;
-  top: 14%;
-  left: 35%;
-  width: 600px;
-  height: 780px;
-}
-
-.center-card-actions {
-  margin-top: 50px;
-  justify-content: center;
-  margin-left: 80px;
-}
-
-.center-card-text {
-  width: 85%;
-  border-radius: 5px;
-}
-
-.center-card-btn {
-  margin-left: 100px;
-  margin-top: 10px;
-  width: 50%;
-  font-size: 40px;
-}
-</style>
-
 <script>
 import Vue from "vue";
 
@@ -174,3 +138,39 @@ export default {
   },
 };
 </script>
+
+<style>
+.bg-image {
+  width: 100%;
+  height: 100%;
+}
+.center-card {
+  background-color: rgba(28, 89, 122, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  border: 1px solid #f1f1f1;
+  border-radius: 30px;
+  position: absolute;
+  top: 14%;
+  left: 35%;
+  width: 600px;
+  height: 780px;
+}
+
+.center-card-actions {
+  margin-top: 50px;
+  justify-content: center;
+  margin-left: 80px;
+}
+
+.center-card-text {
+  width: 85%;
+  border-radius: 5px;
+}
+
+.center-card-btn {
+  margin-left: 100px;
+  margin-top: 10px;
+  width: 50%;
+  font-size: 40px;
+}
+</style>
