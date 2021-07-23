@@ -77,8 +77,8 @@
         <v-text-field
           label="Confirm Password"
           solo
-          v-model="password"
-          :rules="rules"
+          v-model="confirm"
+          :rules="[!!confirm || 'This field is required', password === confirm || 'The password confirmation does not match.']"
           type="password"
           height="70px"
           class="center-card-text"
@@ -91,6 +91,7 @@
           rounded
           to="/login"
           @click="submit"
+          :disabled="!valid"
         >
           Sign Up
         </v-btn>
@@ -148,7 +149,10 @@ export default {
     genders:[ "Male", "Female"],
     username: "",
     password: "",
+    confirm: "",
     rules: [(v) => !!v || "This field is required"],
+    prules:[v => !!v || "This field is required",
+        v => (v===this.password) || "Passwords doesn't match"],
   }),
   methods: {
     async submit() {

@@ -29,21 +29,21 @@
       <v-card class="ans-card">
         <v-card-title>Do you have fever</v-card-title>
         <v-card-actions>
-          <v-select :items="ans" v-model="question1" label="answer" dense solo>
+          <v-select :items="ans" v-model="question1" label="select" dense solo>
           </v-select>
         </v-card-actions>
       </v-card>
       <v-card class="ans-card">
         <v-card-title>Do you have headache?</v-card-title>
         <v-card-actions>
-          <v-select :items="ans" v-model="question2" label="answer" dense solo>
+          <v-select :items="ans" v-model="question2" label="select" dense solo>
           </v-select>
         </v-card-actions>
       </v-card>
       <v-card class="ans-card">
         <v-card-title>Do you have difficulty in breathing?</v-card-title>
         <v-card-actions>
-          <v-select :items="ans" v-model="question3" label="answer" dense solo>
+          <v-select :items="ans" v-model="question3" label="select" dense solo>
           </v-select>
         </v-card-actions>
       </v-card>
@@ -55,7 +55,9 @@
         </v-card-actions>
       </v-card>
       <v-card class="ans-card">
-        <v-card-title>Do you have ache or pain on the spot of vaccine?</v-card-title>
+        <v-card-title
+          >Do you have ache or pain on the spot of vaccine?</v-card-title
+        >
         <v-card-actions>
           <v-select :items="ans" v-model="question5" label="answer" dense solo>
           </v-select>
@@ -81,13 +83,14 @@
           <v-textarea outlined v-model="review"> </v-textarea>
         </v-card-actions>
       </v-card>
-      <v-btn class="btn" @click="add" to="/review"> Add review </v-btn>
+      <v-btn class="btn" @click="add"> Add review </v-btn>
     </div>
   </v-app>
 </template>
 
 <script>
 import Vue from "vue";
+import store from "@/store";
 
 export default {
   name: "AddReview",
@@ -99,32 +102,29 @@ export default {
     question5: " ",
     question6: " ",
     tag: " ",
-    review:" ",
+    review: " ",
     ans: ["Yes", "No"],
     vac: ["AstraZeneca", "Sinovac", "Pfizer", "Moderna"],
   }),
   methods: {
-    async add(){
-      // if (this.$refs.form.validate){
-        let formData = new FormData;
-        formData.append("question1", this.question1);
-        formData.append("question2", this.question2);
-        formData.append("question3", this.question2);
+    async add() {
+      let formData = new FormData();
+      formData.append("username", store.state.username);
+      formData.append("question1", this.question1);
+      formData.append("question2", this.question2);
+      formData.append("question3", this.question2);
       formData.append("question4", this.question2);
       formData.append("question5", this.question2);
       formData.append("question6", this.question2);
       formData.append("tag", this.tag);
       formData.append("review", this.review);
 
-        let response = await Vue.axios.post("/api/login", formData);
-        if(response.data.success) {
-          this.$router.push({path:"/review"});
-        }
-      // }
-      console.log(this.question1, this.question2,this.question3,this.question4,this.question5, this.question6, this.tag);
-        console.log(this.review);
-    }
-  }
+      let response = await Vue.axios.post("/api/addreview", formData);
+      if (response.data.success) {
+        this.$router.push({ path: "/review" });
+      }
+    },
+  },
 };
 </script>
 
@@ -135,9 +135,7 @@ export default {
 }
 
 .q-card {
-  /*background-color: rgba(255, 255, 255); /* Black w/opacity/see-through */
   color: white;
-  /*border: 1px solid #f1f1f1;*/
   position: absolute;
   top: 10%;
   left: 10%;
@@ -151,12 +149,12 @@ export default {
   margin-top: 20px;
 }
 
-.ans-card-review{
+.ans-card-review {
   height: auto;
   margin-top: 20px;
 }
 
-.btn{
-  margin-top:20px;
+.btn {
+  margin-top: 20px;
 }
 </style>

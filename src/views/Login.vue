@@ -45,6 +45,7 @@
           class="card-text"
           required
       ></v-text-field>
+        <div v-if="error" class="alert alert-success" role="alert">{{error}}</div>
         <v-btn class="card-btn" color="white" height="50px" @click="submit" rounded to="/review">
           Submit
         </v-btn>
@@ -121,6 +122,7 @@ export default {
     passwordRules :[
       (v) => !!v || "Password is required"
     ],
+    error: "",
   }),
   methods: {
     async submit(){
@@ -133,6 +135,9 @@ export default {
         if(response.data.success) {
           this.$router.push({path:"/review"});
       }
+        else {
+          this.error = "Invalid username or password";
+        }
       }
       console.log(this.username, this.password);
     }
