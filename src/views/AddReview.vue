@@ -83,7 +83,14 @@
           <v-textarea outlined v-model="review"> </v-textarea>
         </v-card-actions>
       </v-card>
-      <v-btn class="btn" @click="add"> Add review </v-btn>
+      <v-btn class="btn" @click="add" color="primary"> Add review </v-btn>
+      <v-btn
+        style="margin-top: 20px; margin-left: 20px"
+        to="/review"
+        color="error"
+      >
+        Cancel
+      </v-btn>
     </div>
   </v-app>
 </template>

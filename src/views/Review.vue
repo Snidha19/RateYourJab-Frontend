@@ -30,7 +30,7 @@
       <img
         alt="background"
         class="image"
-        style="opacity: 0.5;"
+        style="opacity: 0.5"
         src="../assets/vac 2.jpeg"
       />
     </div>
@@ -66,9 +66,9 @@
             {{ review.review }}
           </div>
         </v-card-text>
-<!--        <v-card-actions>-->
-<!--          <v-btn icon color="error" @click="remove"><v-icon>mdi-delete</v-icon> </v-btn>-->
-<!--        </v-card-actions>-->
+        <!--        <v-card-actions>-->
+        <!--          <v-btn icon color="error" @click="remove"><v-icon>mdi-delete</v-icon> </v-btn>-->
+        <!--        </v-card-actions>-->
       </v-card>
     </div>
 
@@ -78,7 +78,8 @@
           Vaccines
         </v-card-title>
         <v-card-actions>
-          <v-btn color="blue" text @click="filter('Sinovac')" v-model="tag"> Sinovac</v-btn
+          <v-btn color="blue" text @click="filter('Sinovac')" v-model="tag">
+            Sinovac</v-btn
           ><br />
         </v-card-actions>
         <v-card-actions>
@@ -87,11 +88,13 @@
           ><br />
         </v-card-actions>
         <v-card-actions>
-          <v-btn color="blue" text @click="filter('Pfizer')" v-model="tag">Pfizer</v-btn
+          <v-btn color="blue" text @click="filter('Pfizer')" v-model="tag"
+            >Pfizer</v-btn
           ><br />
         </v-card-actions>
         <v-card-actions>
-          <v-btn color="blue" text @click="filter('Moderna')" v-model="tag" >Moderna</v-btn
+          <v-btn color="blue" text @click="filter('Moderna')" v-model="tag"
+            >Moderna</v-btn
           ><br />
         </v-card-actions>
         <v-card-text> </v-card-text>
@@ -138,12 +141,6 @@ export default {
       let response = await Vue.axios.post("/api/searchbytag", formData);
       this.reviews = response.data.reviews;
     },
-    async remove(){
-      let response = await Vue.axios.post("/api/deletereview");
-      if (response.data.success){
-        this.$router.push({ path: "/review" });
-      }
-    },
   },
   async mounted() {
     let response = await Vue.axios.get("/api/review");
@@ -170,7 +167,7 @@ export default {
 }
 
 .side-card {
-  color:darkseagreen;
+  color: darkseagreen;
   position: absolute;
   top: 20%;
   left: 45%;
